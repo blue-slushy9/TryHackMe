@@ -1,0 +1,60 @@
+We will not need any additional VMs for this exercise than the one provided by THM, as we will not be attacking any machines in this exercise. Rather, we will be analyzing a malicious document for any useful information we can extract from it. We can use either the CyberChef webapp or the offline version, both of which are accessible in the VM.
+
+According to MajorGeeks.com, "CyberChef is a simple, intuitive web app for carrying out 'cyber' operations within a web browser [...] simple encoding like XOR or Base64, more complex encryption like AES, DES, and Blowfish, creating binary and hex dumps, compression and decompression of data calculating hashes and checksums, IPv6 and X.509 parsing, changing character encodings [...] enables technical and non-technical analysts to manipulate data in complex ways without dealing with complex tools or algorithms." 
+
+https://www.majorgeeks.com/files/details/cyberchef.html
+
+Even though we are only scratching the surface of what CyberChef can do in this exercise, at the end it will be clear that everything MajorGeeks says about it is very true!
+
+Once you have started the machine, you should see the malicious document, Division_of_labour-Load_share_plan.doc on the desktop. If you open up Firefox, you should then see CyberChef in the bookmarks underneath the address bar:
+
+[1]
+
+Unlike the following steps, the first is very intuitive: you simply load the file into CyberChef. You can either drag-and-drop or you can click on "Open file as input" in the top-right of the CyberChef GUI. You should be able to see the text from the file in the bottom-right of the GUI now, I recommend expanding to full-screen mode for maximum visibility:
+
+[2]
+
+Much of this exercise comes down to pattern recognition, which is generally developed over time from consistent exposure to the object. Therefore, if you are feeling lost at this point, know that it's a completely normal reaction. Thankfully, we have instructions for how to make sense of this chaos! The important bit is to understand the thought process behind every step, and to research any pertinent information therein which you do not already know.
+
+So the first thing we are going to do is extract strings. The instructions imply that we are doing this in order to find the URLs of suspicious domains. It is mentioned that "strings are ASCII and Unicode-printable sequences of characters within a file." All you really need to know about that is that ASCII and Unicode are encoding standards that map bit sequences to human-readable symbols, such as letters and numbers. 
+
+Now we can drag the "strings" function, or "recipe", from the left panel over to our Recipe subsection. You may have to search for it at the top of the left panel. Once you have it in your Recipes, we can select "All printable characters (A)" under Match. You should see your output change. If you scroll through the new ouput, you will see many single lines of just a few characters---but the really interesting bit is the long sequences of concurrent characters separated by "[_]":
+
+[3]
+
+The instructions tell us to raise the "Minimum length" of the string up to 258, this is in order to filter out all of the shorter strings we see in the output. Since we are looking for URLs and other such clues, these are generally longer strings and therefore would not be found among the shorter text sequences in the output. It is interesting to watch the output change as you bring up the "Minimum length" value little by little. 258 characters is the sweet spot where we are left with just the one longest concurrent string in the entire document, which is where the clues are most likely to reside.
+
+Again, this is about pattern recognition. We don't exactly know what we are going to find, but we can sniff it out little by little. As you may have imagined, the next thing we want to do is to remove the "[_]" that separate the letters, numbers, and symbols. We can do this by using regex within the "Find / Replace" function or recipe.
+
+It may be a good idea to pause at this point and provide a brief explanation of what regex is. According to ComputerHope.com, "a regex is a string of text that lets you create patterns that help match, locate, and manage text [...] Regular expressions can also be used from the command line and in text editors to find text within a file.
+
+When first trying to understand regular expressions, it seems as if it's a different language. However, mastering regular expressions can save you thousands of hours if you work with text or need to parse large amounts of data."
+
+https://www.computerhope.com/jargon/r/regex.htm
+
+It checks out because parsing large amounts of data is exactly what we need to do right now! So we are going to search for "Find / Replace" in our Operations, and then drag it over to our Recipes. The way brackets ([]) work in regex is that anything contained inside of them will come up as a match. Additionally, backslashes (\) are used to escape characters, which is another way of saying that we want the computer to take the symbol literally instead of its usual programmatic or app-specific function. Besides regex, escape characters are often used in programming and scripting languages, e.g. 
+
+C:\\Users\\Me\\Pictures\\me_in_a_speedo.jpg
+
+is the same as
+
+C:\Users\Me\Pictures\me_in_a_speedo.jpg
+
+The reason we may, in some cases, have to use the former is because certain programming languages (e.g. Python) use the backslash (\) to denote escape characters, and since we want the backslashes to be treated literally, we have to use two of them to achieve this. Otherwise, the computer would interpret it as this:
+
+C:serseicturese_in_a_speedo.jpg
+
+See how that works?
+
+So let's break this down now:
+
+\[ means to match any left-bracket;
+
+\] means to match any right-bracket;
+
+\n means to match any newline character (these are used to start a new line, i.e. we want the entire string on one line); please note that the newline character always includes the backslash (\n), so we are not using it to denote an escape character in this instance;
+
+_ means to match any underscore;
+
+Since we are using this regex to filter or exclude characters, this means that all instances of those characters will be removed from our output, which will allow us to more accurately view the URL or other clues we are looking for in the document.
+
