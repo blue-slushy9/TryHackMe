@@ -58,3 +58,32 @@ _ means to match any underscore;
 
 Since we are using this regex to filter or exclude characters, this means that all instances of those characters will be removed from our output, which will allow us to more accurately view the URL or other clues we are looking for in the document.
 
+So once we've added the "Find / Replace" operation to our Recipes, we can enter "[\[\]\n_]" and then see our output change accordingly:
+
+[4]
+
+I have highlighted the portion of the output that almost reads "Powershell", so now we know that we seem to be looking at a PowerShell script. The instructions mention that we also now know that the document is using base64 Encoded string to hide the actual code---but how can we tell?
+
+One clue is the "-ENCOD" at the end of the line in our output that also contains "P^0w^er^she^L^L". Of course, this doesn't necessarily point to base64 encoding, but obviously it does point to some type of encoding, and as it turns out base64 is rather common.
+
+According to Base64Encoder.io, "Base64 is a binary-to-text encoding scheme. It represents binary data in a printable ASCII string format by translating it into a radix-64 representation.
+
+Base64 encoding is commonly used when there is a need to transmit binary data over media that do not correctly handle binary data and is designed to deal with textual data belonging to the 7-bit US-ASCII charset only [...] What is Base64 Encoding and How does it work?
+Rajeev Singh8 mins
+
+What is Base64 Encoding and How does it work?
+What is Base64 Encoding
+
+Base64 is a binary-to-text encoding scheme. It represents binary data in a printable ASCII string format by translating it into a radix-64 representation.
+
+Base64 encoding is commonly used when there is a need to transmit binary data over media that do not correctly handle binary data and is designed to deal with textual data belonging to the 7-bit US-ASCII charset only [...] One example of such a system is Email (SMTP) [...] when you send an email containing an image [or attachment] to your friend, your email software Base64 encodes the image and inserts the equivalent text into the message [...] The friend’s email software will Base64-decode the above encoded textual data to restore the original binary image."
+
+https://www.base64encoder.io/learn/
+
+Additionally, if you look at the Base64 alphabet provided by the same website, you will see that all of the characters match our output:
+
+[5]
+
+Finally, Base64Encoder.io also mentions that "When the input has fewer than 24 bits at the end, zero bits are added (on the right) to form an integral number of 6-bit groups. Then, one or two pad (=) characters are output". If you scroll to the bottom of our output in CyberChef, you will see that the last two characters are indeed "==". All of these facts combined point to the encoding being base64.
+
+Ergo, the next step is to 
