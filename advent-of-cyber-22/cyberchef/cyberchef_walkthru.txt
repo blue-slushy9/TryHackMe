@@ -116,4 +116,22 @@ Unfortunately, it is still a mess. However, since the extraneous characters in t
 
 [9]
 
+At this point, we could just go through the output manually, edit the portions of the URL that have been obfuscated, and then paste them into a text document---however, it behooves us to learn how to carry out the entire process using CyberChef. Think about it, there may be cases when you are analyzing a document where the output is much longer than that of this document---would you want to have to go manually go through hundreds or even thousands of lines of text to pick out the URLs and rewrite them y hand? Of course not.
 
+Therefore, our next move will be use our "Find/Replace" Operation again---except this time, we will be using the Replace option. If you look at the various URLs in our output, you'll see that they all begin with "]b2H_" where there should be "http". Ergo, we will replace the former string with the latter. To do this, we will select the "SIMPLE STRING" option in our Find field, before or after typing in "]b2H_". Then we will type in "http" in the Replace field:
+
+[10]
+
+As you can see, our URLs now look as they should. However, for the sake of thoroughness, we will now extract the URLs from our output, which will get rid of all of the other text. In order to do this, we can use the "Extract URLs" Operation. You won't have to mess with any of the settings:
+
+[11]
+
+Our final obstacle to plaintext is the "@" at the end of every URL, so we can use the Split operation to get rid of it. The "Split delimiter" is the character at which the output will be split, this is where we enter the "@". The "Join delimiter" is the character that will be used to put the output back together---in this case, it is the newline character, "\n", which we saw earlier in this exercise. It is because we have set the Join delimiter to \n that we now see the individual URLs occupying their own lines:
+
+[12]
+
+We now have our perfect cleartext derivation of the absolute mess of symbols we saw earlier---however, it is actually not best practice to use complete cleartext URLs due to the risk of somebody clicking on one of them, which in this scenario could easily result in another malware infection. As such, our next and final move will be to "defang" the URLs, for which we will use the "Defang URL" operation. There is nothing to fill out for this operation:
+
+[13]
+
+Now we won't have to worry about any of our security analysts accidentally clicking on one of them! That concludes this exercise, hope to see you back for the next one!
