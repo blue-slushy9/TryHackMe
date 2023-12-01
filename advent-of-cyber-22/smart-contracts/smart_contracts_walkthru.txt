@@ -52,4 +52,6 @@ It worked! Now we can repeat this same process with our other file, Attack.sol:
 
 [10]
 
-Both our files containing our code have been compiled, next step is to deploy (read: run) them! 
+Both our files containing our code have been compiled, next step is to deploy (read: run) them! We are going to click on the "Deploy & run transactions" icon on the far-left panel, just below the one we clicked on to compile our code:
+
+
