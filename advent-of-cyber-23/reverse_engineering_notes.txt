@@ -1,0 +1,20 @@
+# DOS commands
+
+    # Displays contents of a text file
+    TYPE
+
+    # Initiate MS-DOS editor
+    EDIT
+
+    # Provide information about DOS commands
+    HELP
+
+# BUMASTER
+
+    # Navigate to C:\TOOLS\BACKUP, run this command to inspect the .bak file
+    BUMASTER.EXE c:\AC2023.BAK
+
+
+File signatures
+
+Magic bytes
