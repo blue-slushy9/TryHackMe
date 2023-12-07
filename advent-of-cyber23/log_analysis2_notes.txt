@@ -47,3 +47,28 @@ security analysts to monitor which websites users access, when, and how much
 bandwidth is used; also to enforce policies and block specific websites or
 content.
 
+# FILEPATH OF PROXY LOG
+/home/ubuntu/Desktop/artefacts/access.log
+
+# BASH COMMANDS
+
+    # VIEW CONTENTS OF FILE ONE PAGE AT A TIME
+    less <filepath>
+
+    # VIEW CONTENTS AT TOP OF FILE
+    head <filepath>
+
+        # DISPLAY N NUMBER OF LINES ONLY, e.g. 10
+        head -n 10 <filepath> # The -n switch also works in 'tail'
+
+    # VIEW CONTENTS AT END OF FILE
+    tail <filepath>
+
+    # COUNT LINES, WORDS, AND CHARACTERS IN A TEXT FILE
+    wc <filepath>
+
+        # DISPLAY LINE COUNT ONLY
+        wc -l <filepath>
+
+    # RENDERS CONTENTS OF FILE IN A NUMBERED LINE FORMAT
+    nl <filepath>
