@@ -1,0 +1,67 @@
+Safe handling of memory
+
+Variable overflow into adjacent memory, resulting in memory corruption
+
+Exploit buffer overflow to directly change memory which you are not supposed
+to access
+
+"when you change your name to anything large enough, the game goes nuts!
+Sometimes, you'll get random items in your inventory, or your coins just
+disappear."
+
+"whenever we execute a program, all data will be processed somehow through
+the computer's RAM. All relevant data is stored in memory and updated as needed as the program execution progresses."
+
+"a debugger will be needed to check the memory contents while the game runs [...] they programmed a debug panel into the game".
+
+"debugging functionality to watch the memory layout of some of the game's variables"
+
+*In this case, the debugger includes ASCII and HEX formats.
+
+"Viewing the contents in RAM will prove helpful for understanding how memory
+corruption occurs".
+
+"right before the 'coins' memory space, we have the player_name variable [...]
+the player_name variable only has room to accomodate 12 bytes of information
+[...] if you try to change your name to [anything over 12 bytes], the extra
+data will overflow to the first byte of the coins variable
+
+0x78 = 120
+
+0x78 = x (ASCII)
+
+"The game doesn't check if the player_name variable has enough space to store
+the new name. Instead, it keeps writing to adjacent memory, overwriting the
+values of other variables. This is known as a buffer overflow and can be used
+to corrupt memory right next to the vulnerable variable."
+
+"Buffer overflows occur in some programming languages, mostly C and C++, where
+the variables' boundaries aren't strict. If programmers don't check the
+boundaries themselves, it's possible to abuse a variable to read or write
+memory beyond the space initially reserved for it."
+
+"How does the game know the length of a string if no boundary checks are
+performed on the variable?"
+
+"When strings are written to memory, each character is written in order,
+taking 1 byte each. A NULL character, represented in our game by a red zero,
+is also concatenated at the end of the string. A NULL character is simply a
+byte with the value 0x00, which can be seen by changing the debug panel to HEX
+mode. 
+
+When reading a variable as a string, the game will stop at the first NULL
+character it finds. This allows programmers to store smaller strings into
+variables with larger capacities. Any character appearing after the NULL byte
+is ignored, even if it has a value."
+
+"the game reads from the start of the variable up the first NULL byte, which
+appears in the first byte in our example. Therefore, this is equivalent to
+having an empty string."
+
+"Since C++ doesn't check variable boundaries, it reads your name from the
+start of the player_name variable to the first NULL byte it finds. That's why
+your name is now 16 characters long, even though the player_name variable
+should only fit 12 bytes. 
+
+Part of your name now overlaps with the coins variable, so if you spend some
+money in the shop, your visible name will also change!"

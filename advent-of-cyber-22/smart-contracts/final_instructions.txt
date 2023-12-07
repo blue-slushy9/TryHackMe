@@ -1,0 +1,27 @@
+Deploying and Interacting with Contracts
+
+Now that we have the contracts compiled, they are ready to be deployed from the deployment tab. To the right is a screenshot of the deployment tab and labels that we will use to reference menu elements as we move throughout the deployment process.
+
+First, we must select a contract for deployment from the contract dropdown (label 6). We should deploy the EtherStore contract or target contract to begin. For deployment, you only need to press the deploy button (label 7).
+
+We can now interact with the contract underneath the deployed contracts subsection. To test the contract, we can deposit Ether into the contract to be added to the total balance. To deposit, insert a value in the value textbox (label 4) and select the currency denomination at the dropdown under label 5. Once setup is complete, you can deposit by pressing the deposit button (label 10).
+
+Note: when pressing the deposit button, this is a public function we are calling just as if it were another contract calling the function externally.
+
+We’ve now successfully deployed our first contract and used it! You should see the Balance update (label 9).
+
+Now that we have deployed our first contract, switch to a different account (dropdown label 2 and select a new account) and repeat the same process. This time you will be exploiting the original contract and should see the exploit actively occur! We have provided a summary of the steps to deploy and interact with the contract below.
+
+Step 1: Select the contract you want to deploy from the contract dropdown menu under label 6.
+
+Step 2: Deploy the contract by pressing the deploy button.
+
+Note: you need to provide a reference to the contract you are targeting before deploying the attack contract. To accomplish this, copy the address for EtherStore using the button to the right of label 11 and paste the value in the text box under label 8.
+
+Step 3: Confirm the contract was deployed and the attack function can be seen from the deployed contracts subsection.
+
+Step 4: Execute and/or interact with the contract’s function; note that most functions require some form of value input to execute a function properly.
+
+Note: When inputting an Ether amount keep the amounts at small numbers, i.e., 2 - 4. Remix uses the resources of the host device, and the attack relies on recursion, which can be known to keep resources and result in application crashes.
+
+If you get stuck, re-read through the discovery and explanation of the re-entrancy vulnerability. Recall that it must first deposit and withdraw before the fallback function can occur.

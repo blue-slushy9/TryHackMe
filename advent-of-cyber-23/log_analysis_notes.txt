@@ -1,0 +1,22 @@
+# Jupyter Notebooks
+Contain code, text, and each cell acts as its own terminal/interpreter. The
+individual cells can be executed one at a time, step by step. 
+
+*My issue during the exercise is that I was running only one cell at a time,
+when I should have run all of them sequentially (double arrow button in tool-
+bar, there is no keyboard shortcut). 
+
+# Pandas
+Python library used to manipulate, process, and structure data. Has to be
+imported, e.g. "import pandas", often "import as pd". 
+
+Series: pandas data structure similar a single column in a table, uses key-
+value pairs. 
+
+Dataframes: grouping of series'.
+
+# Matplotlib
+Allows for quick creation of many types of plots, e.g. bar charts, histograms,
+pir charts, etc. 
+
+pyplot: create first line chart (in this example).

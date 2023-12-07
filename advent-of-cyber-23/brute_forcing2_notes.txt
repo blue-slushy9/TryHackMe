@@ -1,0 +1,50 @@
+# CeWL 
+Custom wordlist generator that spiders websites to create lists based on the
+site's content. "Spidering" means to automatically navigate and catalogue a
+website, often to retrieve the site structure, content, etc. It can also
+compile lists of email addresses and/or usernames found in team members' page
+links. While its primary purpose is wordlist generation, CeWL includes functionalities such as username enumeration from author meta tags and email extraction.
+
+    # Basic CeWL wordlist (can also be https or domain name)
+    cewl http://<TARGET-IP>
+
+    # Output to a text file
+    cewl http://<TARGET-IP> -w output.txt
+
+    # Spidering depth of 2 layers/links 
+    cewl http://<TARGET-IP> -d 2 -w output1.txt
+
+    # Minimum word length of 5, maximum word length of 10
+    cewl http://<TARGET-IP> -m 5 -x 10 -w output2.txt
+
+    # Append numbers to words
+    cewl http://<TARGET-IP> --with-numbers 
+
+    # Append custom extensions to words
+    cewl http://<TARGET-IP> --extension
+
+    # Spider to external sites (CeWL doesn't do this by default)
+    cewl http://<TARGET-IP> --offsite
+
+
+# WFUZZ
+Tool for brute-forcing webapps, can be used to find resources not linked, e.g.
+directories, servlets, scripts, etc. It can also brute-force GET and POST
+parameters for checking different kinds of injections (SQL, XSS, LDAP). It can
+brute-force forms parameters (user/password) and can do fuzzing.
+
+    # EXAMPLE WFUZZ COMMAND
+    wfuzz -c -z file,usernames.txt -z file,passwords.txt --hs "Please enter the correct
+    credentials" -u http://<TARGET-IP>/login.php -d "username=FUZZ&password=FUZ2Z"
+
+    -c = no argument, WFUZZ will default to a single connection to webserver
+
+    -z = loads a file into wfuzz, which it will use in its brute-force attack
+
+    --hs = hides responses containing the string, i.e. unsuccessful attempts
+
+    -u = specifies the target URL
+
+    -d = provides the POST data format where FUZZ will be replaced by
+         usernames and FUZ2Z by passwords
+
