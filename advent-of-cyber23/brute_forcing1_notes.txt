@@ -1,0 +1,48 @@
+# CRUNCH
+Open-source tool for generating potential passwords. 
+
+"crunch 3 3 0123456789ABCDEF -o 3digits.txt"
+
+3 = minimum length of password
+
+3 = maximum length of password
+
+0123456789ABCDEF = all possible characters in password
+
+-o 3digits.txt = export output to a text file with the name 3digits.txt
+
+
+# HYDRA
+Open-source tool for performing brute-force attacks. 
+
+hydra -l '' -P 3digits.txt -f -v <TARGET-IP> http-post-form "/login.php:^PASS^:Access denied" -s 8000
+
+-l '' = login name is blank, otherwise the name would inside the quotes
+
+-P 3digits.txt = specifies file that contains password list Hydra will use
+
+-f = stops Hydra after finding a working password
+
+-v = verbose, provides additional details of Hydra actions and errors
+
+http-post-form = specifies the HTTP method to use, in this case POST
+
+"/login.php:pin=^PASS^:Access denied" =
+
+/login.php = webpage to which PIN gets submitted
+
+pin=^PASS^ = will replace ^PASS^ with values from our password list
+
+Acess denied = indicates invalid attempts will lead to a page that contains
+the words "Access denied"
+
+-s 8000 = indicates the (session) port number on the target
+
+
+# VIEW PAGE SOURCE
+Setting in web browsers that allows you to view the source code for a given
+webpage. In this case, we needed the method, POST; the URL for the login page,
+/login.php; and the name of the input value, pin. We then feed this
+information to Hydra via the command above.
+
+*If we have the file with the password hashes, we can perform offline attacks.

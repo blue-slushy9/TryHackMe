@@ -1,0 +1,57 @@
+# DOS commands
+
+    # Displays contents of a text file
+    TYPE
+
+    # Initiate MS-DOS editor
+    EDIT
+ 
+        # Exit EDIT program
+        ALT+F, use arrow keys to highlight Exit, press Enter
+
+    # Provide information about DOS commands
+    HELP
+
+# BUMASTER
+
+    # Navigate to C:\TOOLS\BACKUP, run this command to inspect the .bak file
+    BUMASTER.EXE c:\AC2023.BAK
+
+
+# FILE SIGNATURES 
+AKA "magic bytes", specific byte sequences at the beginning of a file that
+identify or verify its content type and format. These bytes often have
+corresponding ASCII characters. In cybersec, file signatures are crucial for
+identifying file types and formats. Knowing these magic bytes can help you
+to quickly identify malicious or suspicious files and choose the right tools
+for analysis.
+
+# BORLAND TURBO C COMPILER
+Used to compile C code into a DOS executable.
+
+    # COMPILE COMMAND
+    TC HELLO.C # Then press ALT+C to open Compile menu, then select "Build All"
+
+    # EXIT TURBO C by going to "File > Quit", you should now see a new file
+    
+# OPEN NEW EXECUTABLE IN EDIT MODE
+EDIT HELLO.EXE # First two bytes, MZ, are the magic bytes which denote a DOS 
+executable
+
+# REOPEN AC2023.BAK IN EDIT MODE
+EDIT C:\AC2023.BAK # You should see the magic bytes set to "XX"; however
+BUMASTER.EXE expects the magic bytes to be "41 43", ergo we will convert the
+HEX value of "41 43" to ASCII in order to reinsert the correct value into the
+magic bytes field
+
+    # HEX TO ASCII CONVERTER
+    https://www.rapidtables.com/convert/number/hex-to-ascii.html
+
+    # CORRECT MAGIC BYTES
+    AC # According to the converter, the magic bytes are "AC", so we use 
+    EDIT MODE to insert this value into our AC2023.BAK file; now just save
+    the
+    changes and you should be able to restore the backup and view the flag!
+
+# RUN BUMASTER AGAIN
+BUMASTER.EXE C:\AC2023.BAK
