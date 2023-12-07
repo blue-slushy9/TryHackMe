@@ -1,0 +1,146 @@
+This is a list of cybersecurity tools and resources mentioned in THM's Advent of Cyber 2022:
+
+Exercise 1 -- Frameworks
+-NIST
+-MITRE ATT&CK
+-Cyber Kill Chain
+-Unified Kill Chain
+-ISO 27000
+
+Exercise 2 -- Log Analysis
+-/var/log
+-grep
+
+Exercise 3 -- OSINT
+-Google Dorks
+-Who.Is
+-Robots.txt
+-HaveIBeenPwned
+-GitHub
+
+Exercise 4 -- Scanning
+-Nmap
+-Nikto
+
+Exercise 5 -- Brute-Forcing
+-SSH
+-RDP
+-VNC
+-rockyou.txt
+-Hydra
+-Remmina
+
+Exercise 6 -- Email Analysis
+-Sublime
+-emlAnalyzer
+-emailrep.io
+-VirusTotal
+-Inquest
+-IPinfo.io
+-Talos Reputation
+-Urlscan.io
+-Browserling
+-Wannabrowser
+
+Exercise 7 -- CyberChef
+
+Exercise 8 -- Smart Contracts
+-Blockchain
+-Remix IDE
+-.sol files
+
+Exercise 9 -- Pivoting
+-Metasploit
+-Meterpreter
+-Docker
+-arp (command)
+-OpenVPN
+-socks proxy
+
+Exercise 10 -- Hack a Game
+-Cetus
+-Developer tools (browser)
+
+Exercise 11 -- Memory Forensics
+-Volatility (open source tool)
+-dumpfiles
+
+Exercise 12 -- Malware Analysis
+-dynamic analysis
+-static analysis
+-Detect It Easy
+-CAPA
+-ProcMon (Windows)
+-Registry
+
+Exercise 13 -- Packet Analysis
+-Hash reputation check
+
+Exercise 14 -- Web Applications
+-OWASP
+-IDOR
+
+Exercise 15 -- Secure Coding
+-SQLi (injection)
+-XSS
+-Unrestriced file upload
+-RCE (remote code execution)
+-CSRF (Cross-Site Request Forgery)
+-ASP
+-ASPX
+-CSHTML
+-ClamAV
+
+Exercise 16 -- Secure Coding
+-PHP
+-data type validation
+
+Exercise 17 -- Secure Coding
+-HTML5
+-Regex
+-input validation
+-egrep
+
+Exercise 18 -- Sigma
+-IOCs
+-Sysmon
+-YAML
+-SigHunt
+-Sigmac
+-Uncoder.io
+-pySigma
+
+Exercise 19 -- Hardware Hacking
+-USART
+-SPI (Serial Peripheral Interface)
+-I2C
+-logic data dump
+
+Exercise 20 -- Firmware
+-SCA (side channel attacks)
+-static analysis
+-dynamic analysis
+-BinWalk
+-Firmware ModKit (FMK)
+-FirmWalker
+-Qemu
+-Gnu DeBugger (GDB)
+-gpg
+-pgp
+
+Exercise 21 -- MQTT
+-IoT
+-middleware
+-CoAP
+-AMQP
+-DDS
+-HTTP
+-WebSocket
+-Paho
+-Mosquitto
+-VLC
+
+Exercise 22 -- Attack Surface Reduction
+-Web drive-by attacks
+-Flow of information
+

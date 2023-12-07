@@ -1,0 +1,137 @@
+We will not need any additional VMs for this exercise than the one provided by THM, as we will not be attacking any machines in this exercise. Rather, we will be analyzing a malicious document for any useful information we can extract from it. We can use either the CyberChef webapp or the offline version, both of which are accessible in the VM.
+
+According to MajorGeeks.com, "CyberChef is a simple, intuitive web app for carrying out 'cyber' operations within a web browser [...] simple encoding like XOR or Base64, more complex encryption like AES, DES, and Blowfish, creating binary and hex dumps, compression and decompression of data calculating hashes and checksums, IPv6 and X.509 parsing, changing character encodings [...] enables technical and non-technical analysts to manipulate data in complex ways without dealing with complex tools or algorithms." 
+
+https://www.majorgeeks.com/files/details/cyberchef.html
+
+Even though we are only scratching the surface of what CyberChef can do in this exercise, at the end it will be clear that everything MajorGeeks says about it is very true!
+
+Once you have started the machine, you should see the malicious document, Division_of_labour-Load_share_plan.doc on the desktop. If you open up Firefox, you should then see CyberChef in the bookmarks underneath the address bar:
+
+[1]
+
+Unlike the following steps, the first is very intuitive: you simply load the file into CyberChef. You can either drag-and-drop or you can click on "Open file as input" in the top-right of the CyberChef GUI. You should be able to see the text from the file in the bottom-right of the GUI now, I recommend expanding to full-screen mode for maximum visibility:
+
+[2]
+
+Much of this exercise comes down to pattern recognition, which is generally developed over time from consistent exposure to the object. Therefore, if you are feeling lost at this point, know that it's a completely normal reaction. Thankfully, we have instructions for how to make sense of this chaos! The important bit is to understand the thought process behind every step, and to research any pertinent information therein which you do not already know.
+
+So the first thing we are going to do is extract strings. The instructions imply that we are doing this in order to find the URLs of suspicious domains. It is mentioned that "strings are ASCII and Unicode-printable sequences of characters within a file." All you really need to know about that is that ASCII and Unicode are encoding standards that map bit sequences to human-readable symbols, such as letters and numbers. 
+
+Now we can drag the "strings" function, or "recipe", from the left panel over to our Recipe subsection. You may have to search for it at the top of the left panel. Once you have it in your Recipes, we can select "All printable characters (A)" under Match. You should see your output change. If you scroll through the new ouput, you will see many single lines of just a few characters---but the really interesting bit is the long sequences of concurrent characters separated by "[_]":
+
+[3]
+
+The instructions tell us to raise the "Minimum length" of the string up to 258, this is in order to filter out all of the shorter strings we see in the output. Since we are looking for URLs and other such clues, these are generally longer strings and therefore would not be found among the shorter text sequences in the output. It is interesting to watch the output change as you bring up the "Minimum length" value little by little. 258 characters is the sweet spot where we are left with just the one longest concurrent string in the entire document, which is where the clues are most likely to reside.
+
+Again, this is about pattern recognition. We don't exactly know what we are going to find, but we can sniff it out little by little. As you may have imagined, the next thing we want to do is to remove the "[_]" that separate the letters, numbers, and symbols. We can do this by using regex within the "Find / Replace" function or recipe.
+
+It may be a good idea to pause at this point and provide a brief explanation of what regex is. According to ComputerHope.com, "a regex is a string of text that lets you create patterns that help match, locate, and manage text [...] Regular expressions can also be used from the command line and in text editors to find text within a file.
+
+When first trying to understand regular expressions, it seems as if it's a different language. However, mastering regular expressions can save you thousands of hours if you work with text or need to parse large amounts of data."
+
+https://www.computerhope.com/jargon/r/regex.htm
+
+It checks out because parsing large amounts of data is exactly what we need to do right now! So we are going to search for "Find / Replace" in our Operations, and then drag it over to our Recipes. The way brackets ([]) work in regex is that anything contained inside of them will come up as a match. Additionally, backslashes (\) are used to escape characters, which is another way of saying that we want the computer to take the symbol literally instead of its usual programmatic or app-specific function. Besides regex, escape characters are often used in programming and scripting languages, e.g. 
+
+C:\\Users\\Me\\Pictures\\me_in_a_speedo.jpg
+
+is the same as
+
+C:\Users\Me\Pictures\me_in_a_speedo.jpg
+
+The reason we may, in some cases, have to use the former is because certain programming languages (e.g. Python) use the backslash (\) to denote escape characters, and since we want the backslashes to be treated literally, we have to use two of them to achieve this. Otherwise, the computer would interpret it as this:
+
+C:serseicturese_in_a_speedo.jpg
+
+See how that works?
+
+So let's break this down now:
+
+\[ means to match any left-bracket;
+
+\] means to match any right-bracket;
+
+\n means to match any newline character (these are used to start a new line, i.e. we want the entire string on one line); please note that the newline character always includes the backslash (\n), so we are not using it to denote an escape character in this instance;
+
+_ means to match any underscore;
+
+Since we are using this regex to filter or exclude characters, this means that all instances of those characters will be removed from our output, which will allow us to more accurately view the URL or other clues we are looking for in the document.
+
+So once we've added the "Find / Replace" operation to our Recipes, we can enter "[\[\]\n_]" and then see our output change accordingly:
+
+[4]
+
+I have highlighted the portion of the output that almost reads "Powershell", so now we know that we seem to be looking at a PowerShell script. The instructions mention that we also now know that the document is using base64 Encoded string to hide the actual code---but how can we tell?
+
+One clue is the "-ENCOD" at the end of the line in our output that also contains "P^0w^er^she^L^L". Of course, this doesn't necessarily point to base64 encoding, but obviously it does point to some type of encoding, and as it turns out base64 is rather common.
+
+According to Base64Encoder.io, "Base64 is a binary-to-text encoding scheme. It represents binary data in a printable ASCII string format by translating it into a radix-64 representation.
+
+Base64 encoding is commonly used when there is a need to transmit binary data over media that do not correctly handle binary data and is designed to deal with textual data belonging to the 7-bit US-ASCII charset only [...] What is Base64 Encoding and How does it work?
+Rajeev Singh8 mins
+
+What is Base64 Encoding and How does it work?
+What is Base64 Encoding
+
+Base64 is a binary-to-text encoding scheme. It represents binary data in a printable ASCII string format by translating it into a radix-64 representation.
+
+Base64 encoding is commonly used when there is a need to transmit binary data over media that do not correctly handle binary data and is designed to deal with textual data belonging to the 7-bit US-ASCII charset only [...] One example of such a system is Email (SMTP) [...] when you send an email containing an image [or attachment] to your friend, your email software Base64 encodes the image and inserts the equivalent text into the message [...] The friend’s email software will Base64-decode the above encoded textual data to restore the original binary image."
+
+https://www.base64encoder.io/learn/
+
+Additionally, if you look at the Base64 alphabet provided by the same website, you will see that all of the characters match our output:
+
+[5]
+
+Finally, Base64Encoder.io also mentions that "When the input has fewer than 24 bits at the end, zero bits are added (on the right) to form an integral number of 6-bit groups. Then, one or two pad (=) characters are output". If you scroll to the bottom of our output in CyberChef, you will see that the last two characters are indeed "==". All of these facts combined point to the encoding being base64.
+
+Ergo, the next step is to get rid of the superfluous text at the top, which contains the reference to PowerShell and Encode. To do this, we can use the "Drop bytes" operation and add it to our Recipes. Once it is loaded, we can leave the "Start" value at 0 and increase the "Length" until we no longer see the top bytes. To fully get rid of the text and whitespace, the final length should be 124:
+
+[6]
+
+Make sure you haven't accidentally dropped too many bytes and erased part of the output that we still want to keep. You can always turn the Length value back down if needed---but again, if you have it set to 124 it should be fine. All that is left now is the base64 text, which we will decode!
+
+In order to do this, we can use the "From base64" operation. Once it is in Recipes, we don't need to mess with any of the settings---just make sure you have inserted it all the way at the bottom, as the order of the Operations does matter. Our output looks very different now:
+
+[7]
+
+If you are familiar with PowerShell scripts, you might see some elements you recognize: Set-Variable at the beginning, Set-Item, Value, Create-Directory, $HOME, etc. Obviously, we aren't finished decoding the output yet, but you can see that we are getting closer.
+
+In step 6, the exercise instructions mention that PowerShell scripts generally use Unicode UTF-16LE encoding by default. This is the second time that Unicode has come up in this exercise, it was previously mentioned in step 2 alongside ASCII. To reiterate my previous explanation, Unicode is an encoding standard used to map bit sequences to human-readable letters, numbers, and symbols.
+
+Specifically, according to Unicode.org, "A Unicode transformation format (UTF) is an algorithmic mapping from every Unicode code point [...] to a unique byte sequence [...] Each UTF is reversible [...] in addition to being lossless, UTFs are unique: any given coded character sequence will always result in the same sequence of bytes for a given UTF."
+
+To further clarify, a "code point" is "Any value in the Unicode codespace."
+
+Finally, the "16LE" means that this particular version of the standard uses code units that are two bytes long (hence 16 bits), and the LE stands for "little-endian". Little-endian is a modality for organizing the byte sequences in the encoding, it puts them in order of least-significant to most-significant. 
+
+https://www.unicode.org/faq/utf_bom.html
+
+So, now that we understand why we are going to do what we are going to do.... let's do it! We will use the "Decode text" operation to decode our output from ~whatever~ it currently is to Unicode UTF-16LE. You will have to set the "Encoding" to the correct type, but once you have done that you will see the output is far more intelligible:
+
+[8]
+
+Unfortunately, it is still a mess. However, since the extraneous characters in the output now are not actually very diverse, we can use the "Find / Replace" Operation again with regex to filter them out like we did before. Once it is in your Recipe, you can enter the characters "['()+`"]" and watch the output get cleaned up:
+
+[9]
+
+At this point, we could just go through the output manually, edit the portions of the URL that have been obfuscated, and then paste them into a text document---however, it behooves us to learn how to carry out the entire process using CyberChef. Think about it, there may be cases when you are analyzing a document where the output is much longer than that of this document---would you want to have to go manually go through hundreds or even thousands of lines of text to pick out the URLs and rewrite them y hand? Of course not.
+
+Therefore, our next move will be use our "Find/Replace" Operation again---except this time, we will be using the Replace option. If you look at the various URLs in our output, you'll see that they all begin with "]b2H_" where there should be "http". Ergo, we will replace the former string with the latter. To do this, we will select the "SIMPLE STRING" option in our Find field, before or after typing in "]b2H_". Then we will type in "http" in the Replace field:
+
+[10]
+
+As you can see, our URLs now look as they should. However, for the sake of thoroughness, we will now extract the URLs from our output, which will get rid of all of the other text. In order to do this, we can use the "Extract URLs" Operation. You won't have to mess with any of the settings:
+
+[11]
+
+Our final obstacle to plaintext is the "@" at the end of every URL, so we can use the Split operation to get rid of it. The "Split delimiter" is the character at which the output will be split, this is where we enter the "@". The "Join delimiter" is the character that will be used to put the output back together---in this case, it is the newline character, "\n", which we saw earlier in this exercise. It is because we have set the Join delimiter to \n that we now see the individual URLs occupying their own lines:
+
+[12]
+
+We now have our perfect cleartext derivation of the absolute mess of symbols we saw earlier---however, it is actually not best practice to use complete cleartext URLs due to the risk of somebody clicking on one of them, which in this scenario could easily result in another malware infection. As such, our next and final move will be to "defang" the URLs, for which we will use the "Defang URL" operation. There is nothing to fill out for this operation:
+
+[13]
+
+Now we won't have to worry about any of our security analysts accidentally clicking on one of them! That concludes this exercise, hope to see you back for the next one!

@@ -1,0 +1,57 @@
+This is a very interesting exercise, as it involves hacking smart contracts! I don't know about you, but I am a bit of a crypto-bro (Do Only Good Everyday) and it was quite interesting learning more about blockchain tech and smart contracts. Still not sure I'd ever want to be a developer, though....
+
+Anyway, once you've read through the instructions, you can begin by downloading the task files. They come in a zip directory, so you will just have to extract the contents---preferably someplace where they won't make a mess. If you use Linux like me, depending on your distro you may be able to use the "unzip" command to do the job---though you may need to install it first. I am working on a Debian machine, so I think unzip just came with the OS. It should be pretty easy to figure out, just ask ChatGPT.
+
+If you are using a Mac or, Buddha forbid, Windows machine---SWITCH TO LINUX NOW! Just kidding, it's not necessary (but people at security conventions WILL look at you funny). For Windows, I always just right-click on the .zip "folder" and select Extract. As for Mac, I'm not sure I've ever worked with a .zip directory on it. In any case, I am confident that you, my esteemed reader, are tech-savvy enough to figure it out!
+
+We will first open up our IDE, Remix, which we can access by clicking on the "Remix IDE" hyperlink in the "Practical Application" subsection of the instructions:
+
+[1]
+
+And you should see this now:
+
+[2]
+
+Under "Files" you will see the option to "Open File". We are going to open both of the .sol files which we extracted from the .zip directory. Once you have opened both of them, you should see them in the FILE EXPLORER on the left-hand side:
+
+[3]
+
+Next step is to compile each contract---but what does it mean to compile them? If you've had any exposure to programming concepts, you may already heard the term. Just in case you don't know what it is (I don't quite remember, despite having studied C as my first programming language), let's do a little refresher.
+
+According to Techopedia.com, "Compile refers to the act of converting programs written in high level programming language, which is understandable and written by humans, into a low level binary language understood only by the computer [...] To compile, you need a compiler, which is a software program that converts high level programming language into machine code". https://www.techopedia.com/definition/540/compile
+
+Not so difficult to understand, right? So, the way we compile our files containing high-level programming language is by opening each of them up individually in the Remix text editor---all you have to do is click on the file under FILE EXPLORER. This is what you should see once you have opened the file, I have chosen to start with EtherStore.sol: 
+
+[4]
+
+Before you compile, I might suggest taking a minute or two and examining the code to try to make sense of it. I have a little experience in programming, and the interesting bit to me is the functions at the bottom, though I can't entirely make sense of them. If you find you can't make any sense of this code, that is fine as you do not need to be a programmer to become a hacker or security analyst---but it is no doubt a useful skill. I always recommend learning at least a little programming, maybe you even find you like it more than security and decide to transition into becoming a developer. The pay is certainly amazing!
+
+Okay, now that we have studied the code a little, we can move onto compiling. Once the file with our code is open in the text editor, we can click on the "Solidity compiler" icon on the far-left of the IDE:
+
+[5]
+
+In the COMPILER drop-down menu, we are going to select "0.8.10+commit.fc410830":
+
+[6]
+
+But what exactly does that bizarre string mean? According to ChatGPT, it "refers to the version of the Solidity compiler being used [...] each release introduces new features, bug fixes, and improvements [...] commit.fc410830 is the Git commit hash associated with the specific commit in the Solidity GitHub repository." Additionally, ChatGPT explains that "the version of the Solidity compiler can impact how your code is compiled and executed on the Ethereum blockchain." This explains why the exercise instructions tell us to use this specific version, i.e. a newer version of the compiler may compile the code in such a way that the vulnerability we are going to exploit will have been patched. This is why ALL software and firmware updates are so important (however, upGRADES may not be so cut-and-dry---I recommend you research this topic for yourself).
+
+TL;DR - next we click on "Compile EtherStore.sol":
+
+[7]
+
+Unfortunately, probably due to the fact that almost an entire year has passed since this exercise was created, it seems we can no longer use that version of the Solidity compiler for this file:
+
+[8]
+
+Thankfully, there is the option to "ASK GPT" about it, and GPT affirmed that we do need to use version 0.8.20 or higher; so let's try 0.8.20+commit.a1b79de6:
+
+[9]
+
+It worked! Now we can repeat this same process with our other file, Attack.sol:
+
+[10]
+
+Both our files containing our code have been compiled, next step is to deploy (read: run) them! We are going to click on the "Deploy & run transactions" icon on the far-left panel, just below the one we clicked on to compile our code:
+
+
