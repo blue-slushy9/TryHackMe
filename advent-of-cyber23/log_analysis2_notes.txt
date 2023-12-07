@@ -1,0 +1,49 @@
+-Malware with data-stealing functionality, unusual network traffic
+
+-Analyze proxy logs to inspect network traffic 
+
+-Parse log entries
+
+
+# APACHE LOG ENTRY
+158.32.51.188 - - [25/Oct/2023:09:11:14 +0000] "GET /robots.txt HTTP/1.1" 200
+11173 "-" "curl/7.68.0"
+
+158.32.51.188 = source IP for the request
+
+- - = placeholders for username and authenticated user, which stay empty in
+      anonymouse requests
+
++0000 = timezone offset from UTC time, i.e. it was recorded in UTC; e.g. +0530
+would mean event occurred 5 hours and 30 minutes ahead of UTC
+
+"GET = HTTP method
+
+/robots.txt = resource path
+
+HTTP/1.1" = protocol and version thereof
+
+200 = status code returned by server, in this case "successful request"
+
+11173 = size of response sent by server in bytes
+
+"-" = placeholder for the referrer header, which indicates the previous page
+visited by the client
+
+"curl/7.68.0" = user agent string, identifies software used by the client to
+make the request; in this case curl version 7.68.0
+
+
+# PROXY SERVER
+Intermediary between your computer/device and the internet. When you request
+information or access to a webpage, your device connects to the proxy server
+instead of directly to the target server. The proxy server then forwards your
+request to the internet, receives the response, and then relays it back to
+your device.
+
+A proxy server offers visibility into network traffic and user activities,
+since it logs all web requests and responses. This allows sysadmins and
+security analysts to monitor which websites users access, when, and how much
+bandwidth is used; also to enforce policies and block specific websites or
+content.
+
