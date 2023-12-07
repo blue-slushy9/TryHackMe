@@ -49,4 +49,19 @@ is also concatenated at the end of the string. A NULL character is simply a
 byte with the value 0x00, which can be seen by changing the debug panel to HEX
 mode. 
 
-When reading 
+When reading a variable as a string, the game will stop at the first NULL
+character it finds. This allows programmers to store smaller strings into
+variables with larger capacities. Any character appearing after the NULL byte
+is ignored, even if it has a value."
+
+"the game reads from the start of the variable up the first NULL byte, which
+appears in the first byte in our example. Therefore, this is equivalent to
+having an empty string."
+
+"Since C++ doesn't check variable boundaries, it reads your name from the
+start of the player_name variable to the first NULL byte it finds. That's why
+your name is now 16 characters long, even though the player_name variable
+should only fit 12 bytes. 
+
+Part of your name now overlaps with the coins variable, so if you spend some
+money in the shop, your visible name will also change!"
