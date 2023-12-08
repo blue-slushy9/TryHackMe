@@ -72,3 +72,29 @@ content.
 
     # RENDERS CONTENTS OF FILE IN A NUMBERED LINE FORMAT
     nl <filepath>
+
+    # EXTRACT SPECIFIC SECTIONS OF LINES FROM FILES, ETC. BASED ON A DELIMITER
+    cut -d ' ' -f1 access.log 
+
+        # -d denotes delimiter, in this case a space
+        # -f the position, in this case the first column in access.log
+
+    # EXTRACT MULTIPLE COLUMNS
+    cut -d ' ' -f1,3,6 access.log
+
+        # Extracts columns 1, 3, and 6
+
+    # EXTRACT BASED ON A DIFFERENT DELIMITER, " instead of a space
+    cut -d '"' -f2 access.log
+
+    # SORT THE LINES OF TEXT FILES IN ASCENDING OR DESCENDING ORDER
+    sort 
+
+    # FILTER OUT AND DISPLAY UNIQUE LINES FROM A SORTED FILE
+    uniq
+
+# BASH PIPES
+
+    # FUNNEL THE OUTPUT OF GREP INTO HEAD WITH ONLY THE FIRST FIVE RESULTS
+    grep 10.10.10.10 access.log | head -n 5
+    
