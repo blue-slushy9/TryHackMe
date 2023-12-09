@@ -97,4 +97,24 @@ content.
 
     # FUNNEL THE OUTPUT OF GREP INTO HEAD WITH ONLY THE FIRST FIVE RESULTS
     grep 10.10.10.10 access.log | head -n 5
-    
+
+
+    # SORT ARRANGES LIST ALPHABETICALLY, UNIQ REMOVES ALL DUPLICATES
+    cut -d ' ' -f3 access.log | cut -d ':' -f1 | sort | uniq
+
+    # UNIQ -C RETURNS COUNT, SORT -N RETURNS BASED ON COUNT,
+    # SORT -R RETURNS IN DESCENDING ORDER
+    cut -d ' ' -f3 access.log | cut -d ':' -f1 | sort | uniq -c | sort -nr
+
+    # TAIL -N 10 WILL RETURN LAST 10 ITEMS
+    cut -d ' ' -f3 access.log | cut -d ':' -f1 | sort | uniq -c | sort -n | tail -n 10
+
+    # PIPE OUTPUT OF GREP INTO HEAD AND VIEW ONLY FIRST 5 ENTRIES (ALMOST)
+    # MATCHING THE FOLLOWING STRING (LOG DETAILS) 
+    grep **SUSPICIOUS DOMAIN** access.log | head -n 5 [2023/10/25:15:56:29]
+    10.10.10.10 www.example.com:80 GET /storage.php?goodies=aLnBq59G13Hfc 200
+    362 "Go-http-client/1.1"
+
+    # PIPE THE ABOVE REQUEST URIs INTO A BASE64 DECODER
+    grep **SUSPICIOUS DOMAIN** access.log | cut -d ' ' -f5 | cut -d '=' -f2 |
+    base64 -d id,recipient,gift
