@@ -1,0 +1,26 @@
+# FTK IMAGER
+
+    -"forensics tool that allows forensic specialists to acquire computer
+    data and perform analysis without affecting the original evidence;
+    preserving its authenticity, integrity, and validity for presentation
+    during a trial in a court of law"
+    
+    -analyze digital artifacts and evidence
+    
+    -recover deleted digital artifacts and evidence
+    
+    -verify the integrity of a drive/image used as evidence
+
+
+# \\PHYSICALDRIVE2 - Microsoft Virtual Disk [1 GB SCSI]
+    
+    -mounted in Read-Only mode
+    
+    -write blocker?
+    
+    -forensic analysis
+    
+    -"in the real world, a forensic lab analyst will first note the suspect
+    drive/artifact details, such as the vendor/manufacturer and hardware ID,
+    and then mount it with a write-blocking device to prevent accidental data
+    tampering during forensic analysis"
