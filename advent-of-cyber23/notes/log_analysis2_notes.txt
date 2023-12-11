@@ -133,4 +133,16 @@ content.
 
     # BASED ON THE HIGH COUNT OF CONNECTION ATTEMPTS, WHAT IS THE NAME OF THE
     # SUSPICIOUS DOMAIN?
-    
+    cut -d ' ' -f3 access.log | sort | uniq -c | sort -nr
+
+    # WHAT IS THE SOURCE IP OF THE WORKSTATION THAT ACCESSED THE MALICIOUS
+    # DOMAIN?
+    grep sus.domain.com access.log | sort | uniq
+
+    # HOW MANY REQUESTS WERE MADE ON THE MALICIOUS DOMAIN IN TOTAL?
+    grep sus.domain.com access.log | sort | uniq -c | wc -l
+
+    # HAVING RETRIEVED THE EXFILTRATED DATA, WHAT IS THE HIDDEN FLAG?
+    grep sus.domain.com access.log | head -n 5 # STEP 1
+    grep sus.domain.com access.log | head -n 5 | cut -d ' ' -f4 | cut -d '=' -f5 | cut -d '=' -f2 # STEP 2
+    grep sus.domain.com access.log | head -n 5 | cut -d ' ' -f4 | cut -d '=' -f5 | cut -d '=' -f2 | base64 -d # STEP 3, the switch -d stands for "decode" 
