@@ -1,0 +1,27 @@
+-Understand and identify SQL injection vulnerabilities
+
+-Exploit stacked queries to turn SQL injection into remote code execution
+
+-
+
+# SQL
+Essential for working with relational databases and building dynamic websites.
+Used for checking bank account balance, browsing products on e-commerce sites,
+posting on social media---all of these activities indirectly query and alter
+databases. 
+
+Relational databases are structured data collections organized into tables,
+each consisting of various rows and columns. Within these collections, tables
+are interconnected with predefined relationships, facilitating efficient data
+organization retrieval. For example, an e-commerce relational database might
+include tables for "customers", "orders", and "products" with relationships
+defined to link customer information to their respective orders through the
+use of identifiers.
+
+SQL provides a rigid way to query, insert, update, and delete the data stored
+in these tables, allowing you to retrieve and alter databases as needed. A
+website or application that relies on a database must dynamically generate SQL
+queries and send them to the database engine to fetch or update the necessary
+data. The syntax of SQL queries is based on English and consists of structured
+commands using keywords like SELECT, FROM, WHERE, and JOIN to express
+operations in a natural, language-like way. 
