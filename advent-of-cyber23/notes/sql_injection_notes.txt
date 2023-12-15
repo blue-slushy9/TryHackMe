@@ -2,7 +2,7 @@
 
 -Exploit stacked queries to turn SQL injection into remote code execution
 
--
+
 
 # SQL
 Essential for working with relational databases and building dynamic websites.
@@ -25,3 +25,28 @@ queries and send them to the database engine to fetch or update the necessary
 data. The syntax of SQL queries is based on English and consists of structured
 commands using keywords like SELECT, FROM, WHERE, and JOIN to express
 operations in a natural, language-like way. 
+
+
+# PHP
+General-purpose scripting language that plays a crucial role in web
+development. Enables developers to create dynamic and interactive websites by
+generating HTML content on the server and delivering it to the client's web
+browser. PHP's versatility and seamless integration with SQL databses makes it
+a powerful tool for building feature-rich, dynamic web applications. 
+
+PHP is a server-side scripting language, meaning the code is executed on the
+webserver before the final HTML is sent to the user's browser. Unlike client-
+side technologies like HTML, CSS, and JavaScript; PHP allows developers to
+perform various server-side tasks, such as connecting to a wide range of
+databases (e.g. MySQL, PostgreSQL, and Microsoft SQL Server); executing SQL
+queries, processing form data, and dynamically generating web content.
+
+The most common way for PHP to connect to SQL databases is using the PHP Data
+Objects (PDO) extension or specific database server drivers like mysqli for
+MySQL or sqlsrv for Microsoft SQL Server (MSSQL). The connection is typically
+established by providing parameters such as the host, username, password, and
+database name. 
+
+After establishing a database connection, we can execute SQL queries through
+PHP and dynamically generate HTML content based on the returned data to
+display information such as user profiles, product listings, or blog articles.
