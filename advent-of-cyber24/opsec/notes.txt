@@ -1,0 +1,7 @@
+# Day 1: OPSEC
+
+# INSTALLED
+
+exiftool
+
+
