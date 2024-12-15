@@ -1,0 +1,15 @@
+Advent of Cyber 2024
+
+Day 1 -- OPSEC
+
+Hello reader,
+
+This is just some additional information on the TryHackMe activity. I started taking notes on them because often the walkthrough on THM provides only the minimum information necessary to complete the exercise, which is understandable but also leaves script kiddies like me with many lingering questions.
+
+MALVERTISING
+
+I had never actually heard of this before the exercise, so it was one of the things that intrigued me. The cursory definition on THM is: "Many sites contain malicious ads that can exploit vulnerabilities in a user's system, which could lead to infection", but how does it work exactly?
+
+According to the University of Tennessee at Knoxville, "Malvertising involves injecting malicious or malware-laden advertisements into legitimate online advertising networks and web pages [...] Website publishers unknowingly incorporate corrupted or malicious ads into their pages [...] What is so scary about Malvertising is how it often involves the exploitation of trustworthy companies. Those attempting to spread malware begin by placing “clean” ads on trustworthy sites to gain a good reputation, then later insert a virus or spyware in the code behind the ad for a short time, thus infecting all site visitors during that time."
+
+The websites themselves don't need to be malicious, actually this strategy works much better if the website is well established with a good reputation.
