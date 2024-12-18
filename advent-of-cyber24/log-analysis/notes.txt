@@ -1,0 +1,31 @@
+# ADVENT OF CYBER 2024
+# LOG ANALYSIS 
+
+# These are just the terms and/or concepts with which I'm not already familiar.
+
+
+-PROXY LOGS: detailed records of traffic that passes through a proxy server. 
+
+Key information: timestamps, client IPs, server IPs, request method (e.g. GET), user-agent (browser or app used to make request), referrer (webpage or app that referred user to the page), response code (e.g. 200 OK), bytes sent/received.
+
+Proxy logs can be used to analyze user behavior, identify unusual patterns, detect potential threats.
+
+Proxy logs can help organizations comply with various regulations, such as GDPR and HIPAA, by providing a record of network activity.
+
+Proxy logs can be analyzed by advanced threat detection tools to identify malicious activity, e.g. phishing, malware distribution, data exfiltration.
+
+
+
+-PARENT PROCESS: process that spawns or creates one or more child processes. 
+
+The parent process can manage and control the resources allocated to its child processes. 
+
+The parent process can also handle errors that occur in its chilld processes. 
+
+The parent process can also terminate its child processes, ensuring proper cleanup. 
+
+Child processes often inherit certain attributes from their parent processes, such as environment variables and open file descriptors.
+
+
+
+-
