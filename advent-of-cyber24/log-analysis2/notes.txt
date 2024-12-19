@@ -1,1 +1,25 @@
- 
+# ADVENT OF CYBER 2024
+# LOG ANALYSIS 2
+
+-ELK, Elasticsearch, Logstash, Kibana: log management and analysis tools or SIEMs.
+
+-Kibana Query Language (KQL): used to search documents for values, similar to SQL or Splunk's Search Processing Language (SPL). Kibana also allows Lucene query.
+
+-Lucene: advanced language that supports features such as fuzzy terms, regex, etc.
+
+# FILE UPLOAD VULNERABILITIES
+
+-RCE: upload a script written by the attacker that the server runs. 
+
+-XSS: upload an HTML file that contains an XSS code which will steal a cookie 
+and send it back to the attacker's server.
+
+-Crafted image file that triggers a vulnerability when processed by the server.
+
+Web shell: script that attackers upload to be able to run shell commands on a 
+server, they can access this shell just by browsing to it directly using a 
+browser. The attacker may even be able to establish a reverse shell to establish
+a direct connection back to their system, which would allow them to control the
+server remotely.
+
+-
