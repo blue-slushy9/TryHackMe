@@ -1,0 +1,8 @@
+'Sample XML file from the XXE activity in Advent of Cyber 2024'
+
+<wishlist>
+  <user_id>1</user_id>
+     <item>
+       <product_id>1</product_id>
+     </item>
+</wishlist>

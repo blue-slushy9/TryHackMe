@@ -30,3 +30,8 @@ that modify data on the server.
 POST is typically used for actions that have side effects on the server, 
 e.g. submitting a form, uploading files, creating new database resources, 
 making changes to server-side data.
+
+-Asynchronous Javascript And XML (AJAX): a set of webdev techniques used to
+create interactive webapps that can update parts of a webpage without requiring
+a full page reload. Although the name includes "XML", JSON (JavaScript Object 
+Notation) is more commonly used for data exchange today. 

