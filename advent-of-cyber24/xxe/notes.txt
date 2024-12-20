@@ -1,0 +1,32 @@
+# ADVENT OF CYBER 2024
+# XXE
+
+-eXtensible Markup Language (XML): commonly used method to transport and store
+data in a structured format that humans and machines can easily understand. 
+
+Example: two computers need to agree on a common format for exchanging
+information, the XML would be the format to which they both agree. This is why
+XML uses tags to label and organize information.
+
+-Document Type Definition (DTD): a set of rules that defines the structure of
+the XML document. It acts like a database scheme or blueprint, telling you what
+elements (tags) and attributes are allowed in the XML file.
+
+-XML eXternal Entity (XXE): attack that exploits how XML parsers handle external
+entities. When a webapp processes an XML file that contains an external entity,
+the parser attempts to load or execute whatever resource the entity points to.
+If necessary sanitation is not in place, the attacker may point the entity to
+any malicious source/code causing the undesired behavior of the webapp.
+
+-POST: HTTP method used to send data to a server to create or update a resource.
+Unlike GET requests, which send data in the URL as query parameters, POST
+requests send data in the request body. This makes them suitable for sending
+larger amounts of data, including binary data like file uploads.
+
+The data sent in a POST request is not visible in the browser address bar, 
+making it more suitable for sensitive data like passwords or form submissions 
+that modify data on the server.
+
+POST is typically used for actions that have side effects on the server, 
+e.g. submitting a form, uploading files, creating new database resources, 
+making changes to server-side data.
