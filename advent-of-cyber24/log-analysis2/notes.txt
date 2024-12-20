@@ -22,4 +22,10 @@ browser. The attacker may even be able to establish a reverse shell to establish
 a direct connection back to their system, which would allow them to control the
 server remotely.
 
--
+# LINUX COMMANDS
+
+# Returns system information, e.g. OS, kernel version
+uname -a
+
+# Returns group membership of current user
+id
