@@ -1,4 +1,21 @@
 # AoC 2024
 # Sandboxes
 
--(YARA):
+YARA: tool used to identify and classify malware based on patterns in its
+code. By writing custom rules, analysts can define specific characteristics to
+look for, e.g. strings, file headers, behaviors. YARA will scan files or
+processes to find matches, making it powerful at detecting malicious code.
+
+-Event Viewer > System: record of events related to the Windows OS itself.
+
+~OS events: startup, shutdown, driver loading and errors, system services starting and stopping, etc.
+
+~Hardware events: devices, drives, network adapters, USB; driver installations, device failures, resource conflicts, etc. 
+
+~Service events: Windows services, which are background processes; starting, stopping, encountering errors, etc.
+
+~Use cases: troubleshooting system crashes, BSOD; monitoring system health;
+security analysis, can be used alongside the Security log for more context;
+performance analysis, can be used with Performance Monitor for more information.
+
+
