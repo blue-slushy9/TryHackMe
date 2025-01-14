@@ -1,0 +1,6 @@
+# ADVENT OF CYBER 2024
+# ATOMIC RED TEAM
+
+-ATR library: a collection of red team cases that are mapped to the MITRE ATT&CK
+framework. The library consists of simple test cases that can be executed by
+any blue team to test for detection gaps. The library also supports automation.
