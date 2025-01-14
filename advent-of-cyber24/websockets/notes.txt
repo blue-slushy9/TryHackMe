@@ -1,0 +1,24 @@
+# Advent of Cyber 2024
+
+# Websockets (Day 13)
+
+-Websockets: allow your browser and the server to keep a constant line of
+communication open. Once the initial handshake is finished and the connection
+is established, it remains open. This is faster, but also less secure. Unlike 
+HTTPS, Websockets don't have built-in ways to handle authentication or session
+validation.
+
+-Cross-Site WebSocket Hijacking (CSWSH): an attacker tricks a user's browser
+into opening a websocket connection to another site. If successful, the
+attacker might be able to hijack that connection or access data meant for the
+legitimate server.
+
+-DoS: because websocket connections stay open, they can be targeted by DoS
+attacks. An attacker could flood the server with a ton of messages,
+potentially slowing it down or crashing it altogether.
+
+-Websocket Message Manipulation: an attacker intercepts and changes the
+messages sent between a webapp and its server. A hacker could intercept and
+tweak the messages as they're being sent, making the app behave differently
+or even embedding malicious code in the data. Websockets don't have end-to-end
+encryption like HTTPS does.
